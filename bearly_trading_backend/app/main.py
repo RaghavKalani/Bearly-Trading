@@ -11,8 +11,11 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",  # Local development
+        "http://localhost:3000",  # Local development (React/Next.js)
+        "http://localhost:5173",  # Local development (Vite)
         "https://bearly-trading.vercel.app",  # Production frontend
+        "https://bearly-trading-git-main-raghavkalanis-projects.vercel.app",  # Vercel Git branch
+        "https://*.vercel.app",  # All Vercel preview deployments
     ],
     allow_credentials=True,
     allow_methods=["*"],
