@@ -1,1 +1,9 @@
-node_modules
+node_modules/
+__pycache__/
+
+# Build artifacts
+bearly_trading_frontend/build/
+
+# Environment files (keep examples tracked)
+**/.env
+!**/.env.example

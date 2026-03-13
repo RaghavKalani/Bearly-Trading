@@ -15,8 +15,8 @@ app.add_middleware(
         "http://localhost:5173",  # Local development (Vite)
         "https://bearly-trading.vercel.app",  # Production frontend
         "https://bearly-trading-git-main-raghavkalanis-projects.vercel.app",  # Vercel Git branch
-        "https://*.vercel.app",  # All Vercel preview deployments
     ],
+    allow_origin_regex=r"https://.*\.vercel\.app",  # Vercel preview deployments
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
