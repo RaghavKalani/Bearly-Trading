@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, TrendingUp, Briefcase, BookOpen, Trophy, LogOut } from 'lucide-react';
+import { Home, TrendingUp, Briefcase, BookOpen, Trophy, LogOut, Settings } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import BearLogo from './BearLogo';
 
@@ -14,6 +14,7 @@ const Sidebar = () => {
     { name: 'Portfolio', path: '/portfolio', icon: Briefcase },
     { name: 'Learning', path: '/learning', icon: BookOpen },
     { name: 'Leaderboard', path: '/leaderboard', icon: Trophy },
+    { name: 'Settings', path: '/settings', icon: Settings },
   ];
 
   return (
