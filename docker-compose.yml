@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: bearly_trading_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: bearlytrading
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./bearly_trading_backend
+    container_name: bearly_trading_backend
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql://postgres:password123@postgres:5432/bearlytrading
+      - SECRET_KEY=prod_secret_key_change_me_in_real_env
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - GOOGLE_CLIENT_ID=mock_google_id.apps.googleusercontent.com
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+  frontend:
+    build:
+      context: ./bearly_trading_frontend
+    container_name: bearly_trading_frontend
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
